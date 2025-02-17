@@ -10,3 +10,7 @@ pip install openpyxl
 
 #delete and send to trash
 pip install send2trash
+
+#games
+pip install pygame
+
