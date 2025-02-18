@@ -14,3 +14,5 @@ pip install send2trash
 #games
 pip install pygame
 
+#Installer
+pip installer pyinstaller

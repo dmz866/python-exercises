@@ -1,8 +1,17 @@
+import io
 import math
 import random
 
 import pygame
 from pygame import mixer
+
+'''
+Create .exe
+pyinstaller --clean --onefile --windowed my_game.py
+
+copy resources files to dist (mp3, images, etc)
+
+'''
 
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
@@ -20,7 +29,6 @@ mixer.music.load('bg-music.mp3')
 mixer.music.set_volume(0.3)
 mixer.music.play()
 
-
 #Player
 player_img = pygame.image.load('spaceship.png')
 player_x = 368
@@ -31,7 +39,7 @@ player_change_y = 0
 #Enemies
 enemy_img = pygame.image.load('enemy.png')
 enemy_x = random.randint(0 ,736)
-enemy_y = 400
+enemy_y = 10
 enemy_change_x = 0.1
 
 #Bullet
@@ -43,9 +51,18 @@ bullet_visible = False
 
 # Player Points
 points = 0
-font = pygame.font.Font('freesansbold.ttf', 32)
 points_x = 10
 points_y = 10
+
+#Fonts
+def font_to_bytes(ff):
+    with open(ff, 'rb') as f:
+        tf = f.read()
+
+    return io.BytesIO(tf)
+
+font_bytes = font_to_bytes('FreeSansBold.ttf')
+font = pygame.font.Font(font_bytes, 32)
 
 def show_points(x, y):
     text = font.render(f'Points: {points}', True, (255, 255, 255))
